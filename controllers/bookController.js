@@ -38,13 +38,13 @@ const updateBook = async (req, res) => {
     if (book) {
          
         
-        if (!book.user) {
-            return res.status(403).json({ message: 'Book record is missing owner data. Update denied.' });
-        }
+        // if (!book.user) {
+        //     return res.status(403).json({ message: 'Book record is missing owner data. Update denied.' });
+        // }
 
-        if (book.user.toString() !== req.user._id.toString()){
-            return  res.status(403).json({ message: 'Not authorized to update this book' });
-        }
+        // if (book.user.toString() !== req.user._id.toString()){
+        //     return  res.status(403).json({ message: 'Not authorized to update this book' });
+        // }
 
         const updatedBook = await Book.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
@@ -59,9 +59,9 @@ const updateBook = async (req, res) => {
 const deleteBook = async (req, res) => {
     const book = await Book.findById(req.params.id);
     if (book) {
-        if (book.user.toString() !== req.user.id){
-            return  res.status(403).json({ message: 'Not authorized to delete this book' });
-        }
+        // if (book.user.toString() !== req.user.id){
+        //     return  res.status(403).json({ message: 'Not authorized to delete this book' });
+        // }
         await book.deleteOne({_id: req.params.id});
         res.status(200).json({ message: 'Book removed' });
     } else {
