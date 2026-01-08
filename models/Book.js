@@ -22,11 +22,7 @@ const BookSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User',
-    },
+    
 });
 
 const Book = mongoose.model('Book', BookSchema);
